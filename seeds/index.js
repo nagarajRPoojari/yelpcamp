@@ -1,8 +1,13 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const mongoose = require("mongoose");
 const cities = require("./cities");
 const Campground = require("../module/camground");
 const { descriptors, places } = require("./seedhelpers");
-mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp", {
+const dbUrl = process.env.DB_URL;
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
 });
 const db = mongoose.connection;
@@ -39,6 +44,7 @@ const seeDB = async () => {
       ],
     });
     await camp.save();
+    console.log(camp);
   }
 };
 seeDB();
