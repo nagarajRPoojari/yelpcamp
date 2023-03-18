@@ -157,9 +157,5 @@ app.get("/campground/home", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log("listening to 3000");
+  console.log("listening to " + port);
 });
-
-/*CLOUDINARY_CLOUD_NAME=dua8at5is
-CLOUDINARY_KEY=289634323881852
-CLOUDINARY_SECRET=Z_N9rYjHpwqneC8mcPzXtibILjY*/
