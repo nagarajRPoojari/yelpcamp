@@ -92,7 +92,7 @@ const userRoutes = require("./router/users");
 const campgroundRoutes = require("./router/campground");
 const reviewRoutes = require("./router/review");
 
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
   res.render("campgrounds/home.ejs");
 });
 
