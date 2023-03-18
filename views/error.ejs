@@ -1,0 +1,16 @@
+<% layout('layouts/boilerplate.ejs') %>
+<div class="row">
+  <div class="col-ms-8">
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading-center">
+        <%= err.statusCode%> :<%= err.message%>
+      </h4>
+      <hr />
+      <% if(process.env.NODE_ENV != "production"){ %>
+      <p><%= err.stack%></p>
+      <% } %>
+      <hr />
+      <p class="mb-0"></p>
+    </div>
+  </div>
+</div>

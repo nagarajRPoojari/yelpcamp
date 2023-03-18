@@ -1,0 +1,84 @@
+<% layout('layouts/boilerplate.ejs') %>
+<style>
+  .containerr {
+    width: 100vw;
+  }
+  .each-card {
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
+<div class="map" id="map" style="height: 400px"></div>
+<div id="cluster-map"></div>
+<div class="container">
+  <div class="text-center mt-4">
+    <h1>Search for Campground</h1>
+  </div>
+  <input
+    type="text"
+    id="myInput"
+    class="form-control mb-5 mt-5"
+    onkeyup="myFunction()"
+    placeholder="Search for campgrounds.."
+  />
+  <div class="mb-5" style="max-height: 1000px; overflow-x: scroll">
+    <% for(let i of campground) {%>
+
+    <div class="card mt-3 campCard">
+      <div class="row">
+        <div class="col-lg-4" id="image">
+          <% if(i.images.length){ %>
+          <img alt="" class="card-img" src="<%=i.images[0].url%>" />
+          <% }else{ %>
+          <img
+            alt=""
+            class="card-img"
+            src="https://res.cloudinary.com/dua8at5is/image/upload/v1664289216/some-folder-name/glicgqwg2ole2cwnvx2a.jpg"
+          />
+
+          <% } %>
+        </div>
+        <div class="col">
+          <div class="card-body">
+            <h5 class="card-title t"><%= i.title %></h5>
+            <p class="card-text t"><%= i.description %></p>
+            <p class="card-text">
+              <small class="t"><%= i.location %> </small>
+            </p>
+            <a href="/campgrounds/<%=i._id %>" class="btn btn-outline-primary t"
+              >view</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% } %>
+  </div>
+</div>
+
+<script>
+  const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
+  const campground =  {features:<%- JSON.stringify(campground)%>};
+</script>
+<script src="/javascripts.js/clusterMap.js"></script>
+
+<script>
+  function myFunction() {
+    // Declare variables
+    const input = document.getElementById("myInput");
+    const filter = input.value.toUpperCase();
+    const card = document.getElementsByClassName("campCard");
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < card.length; i++) {
+      const name = card[i].getElementsByClassName("card-title")[0];
+      const txtValue = name.textContent || name.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        card[i].style.display = "";
+      } else {
+        card[i].style.display = "none";
+      }
+    }
+  }
+</script>
