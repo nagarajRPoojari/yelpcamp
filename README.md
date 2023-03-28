@@ -1,6 +1,6 @@
 
 # YelpCamp-CRUD App
-# 🔗 [visit site](https://chessgame7.onrender.com/)
+# 🔗 [visit site](https://yelpcamp-qzyi.onrender.com/)
 This is a full stack CRUD app made using Node and Express.
 Deployed on [render](https://yelpcamp-qzyi.onrender.com/).
 
